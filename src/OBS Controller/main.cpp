@@ -32,12 +32,10 @@ int main(int argc, char* argv[]) {
 		MessageBox(NULL, _T("Cannot attach to process"), _T("Error"), MB_ICONERROR);
 		return 1;
 	}
-
 	switch (commandId) {
 	case commandIds::STREAMING_START:
 		REMOTE_CALL(obs_frontend_streaming_start);
 		break;
-
 	case commandIds::STREAMING_STOP:
 		REMOTE_CALL(obs_frontend_streaming_stop);
 		break;
@@ -65,7 +63,6 @@ int main(int argc, char* argv[]) {
 		REMOTE_CALL(obs_frontend_replay_buffer_save);
 		break;
 	}
-
 	process.Detach();
 
 	return 0;
