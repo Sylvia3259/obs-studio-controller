@@ -30,15 +30,15 @@ const enum commandIds {
 };
 
 const std::map<std::string, commandIds> commands = {
-	{"--streaming-start", commandIds::STREAMING_START},
-	{"--streaming-stop", commandIds::STREAMING_STOP},
+	{"--start-streaming", commandIds::STREAMING_START},
+	{"--stop-streaming", commandIds::STREAMING_STOP},
 
-	{"--recording-start", commandIds::RECORDING_START},
-	{"--recording-stop", commandIds::RECORDING_STOP},
-	{"--recording-resume", commandIds::RECORDING_RESUME},
-	{"--recording-pause", commandIds::RECORDING_PAUSE},
+	{"--start-recording", commandIds::RECORDING_START},
+	{"--stop-recording", commandIds::RECORDING_STOP},
+	{"--resume-recording", commandIds::RECORDING_RESUME},
+	{"--pause-recording", commandIds::RECORDING_PAUSE},
 
-	{"--replay-buffer-start", commandIds::REPLAY_BUFFER_START},
-	{"--replay-buffer-stop", commandIds::REPLAY_BUFFER_STOP},
-	{"--replay-buffer-save", commandIds::REPLAY_BUFFER_SAVE},
+	{"--start-replay-buffer", commandIds::REPLAY_BUFFER_START},
+	{"--stop-replay-buffer", commandIds::REPLAY_BUFFER_STOP},
+	{"--save-replay-buffer", commandIds::REPLAY_BUFFER_SAVE},
 };
