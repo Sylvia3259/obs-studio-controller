@@ -18,6 +18,9 @@ void(*obs_frontend_replay_buffer_stop)(void);
 bool(*obs_frontend_replay_buffer_active)(void);
 
 const enum commandIds {
+	OBS_STUDIO_START,
+	OBS_STUDIO_STOP,
+
 	STREAMING_START,
 	STREAMING_STOP,
 
@@ -32,6 +35,9 @@ const enum commandIds {
 };
 
 const std::map<std::string, commandIds> commands = {
+	{"--start-obs-studio", commandIds::OBS_STUDIO_START},
+	{"--stop-obs-studio", commandIds::OBS_STUDIO_STOP},
+
 	{"--start-streaming", commandIds::STREAMING_START},
 	{"--stop-streaming", commandIds::STREAMING_STOP},
 

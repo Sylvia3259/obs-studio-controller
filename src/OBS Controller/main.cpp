@@ -1,6 +1,8 @@
+#include <fstream>
 #include <tchar.h>
 #include <Windows.h>
 #include <BlackBone/Process/Process.h>
+#include <BlackBone/Misc/Utils.h>
 #include "constants.h"
 #include "macros.h"
 using namespace std;
@@ -23,8 +25,46 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	wstring obsPath, obsDirectory, obsFilename;
+	auto currentPath = Utils::GetExeDirectory();
+	wifstream file(currentPath + L"\\obs-studio.txt");
+	if (file.is_open()) {
+		getline(file, obsPath);
+		obsDirectory = Utils::GetParent(obsPath);
+		obsFilename = Utils::StripPath(obsPath);
+		file.close();
+	}
+	else {
+		MessageBox(NULL, _T("Failed to open the file"), _T("Error"), MB_ICONERROR);
+		return 1;
+	}
+
 	Process process;
-	auto status = process.Attach(L"obs64.exe");
+	if (commandId == commandIds::OBS_STUDIO_START) {
+		auto status = process.CreateAndAttach(obsPath, false, false, L"", obsDirectory.c_str(), nullptr);
+		if (!NT_SUCCESS(status)) {
+			MessageBox(NULL, _T("Cannot create process"), _T("Error"), MB_ICONERROR);
+			return 1;
+		}
+		process.Detach();
+		return 0;
+	}
+	else if (commandId == commandIds::OBS_STUDIO_STOP) {
+		auto status = process.Attach(obsFilename.c_str());
+		if (!NT_SUCCESS(status)) {
+			MessageBox(NULL, _T("Cannot attach to process"), _T("Error"), MB_ICONERROR);
+			return 1;
+		}
+		status = process.Terminate();
+		if (!NT_SUCCESS(status)) {
+			MessageBox(NULL, _T("Failed to terminate process"), _T("Error"), MB_ICONERROR);
+			return 1;
+		}
+		process.Detach();
+		return 0;
+	}
+
+	auto status = process.Attach(obsFilename.c_str());
 	if (!NT_SUCCESS(status)) {
 		MessageBox(NULL, _T("Cannot attach to process"), _T("Error"), MB_ICONERROR);
 		return 1;
@@ -61,6 +101,5 @@ int main(int argc, char* argv[]) {
 		break;
 	}
 	process.Detach();
-
 	return 0;
 }
