@@ -75,24 +75,28 @@
     <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)ext;$(SolutionDir)ext\Blackbone\src;$(SolutionDir)ext\blackbone\contrib;$(IncludePath)</IncludePath>
+    <TargetName>obs-controller</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)ext;$(SolutionDir)ext\Blackbone\src;$(SolutionDir)ext\blackbone\contrib;$(IncludePath)</IncludePath>
+    <TargetName>obs-controller</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)ext;$(SolutionDir)ext\Blackbone\src;$(SolutionDir)ext\blackbone\contrib;$(IncludePath)</IncludePath>
+    <TargetName>obs-controller</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)ext;$(SolutionDir)ext\Blackbone\src;$(SolutionDir)ext\blackbone\contrib;$(IncludePath)</IncludePath>
+    <TargetName>obs-controller</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
