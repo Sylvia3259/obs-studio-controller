@@ -5,6 +5,7 @@
 #include <BlackBone/Process/Process.h>
 #include <BlackBone/Process/RPC/RemoteFunction.hpp>
 #include "constants.h"
+#include "macros.h"
 using namespace std;
 using namespace blackbone;
 
@@ -16,8 +17,8 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 
+	commandIds commandId;
 	auto command = commands.find(argv[1]);
-	int commandId;
 	if (command != commands.end())
 		commandId = command->second;
 	else {
@@ -34,70 +35,34 @@ int main(int argc, char* argv[]) {
 
 	switch (commandId) {
 	case commandIds::STREAMING_START:
-		MakeRemoteFunction<decltype(obs_frontend_streaming_start)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_streaming_start"
-			).Call();
+		REMOTE_CALL(obs_frontend_streaming_start);
 		break;
 
 	case commandIds::STREAMING_STOP:
-		MakeRemoteFunction<decltype(obs_frontend_streaming_stop)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_streaming_stop"
-			).Call();
+		REMOTE_CALL(obs_frontend_streaming_stop);
 		break;
 
 	case commandIds::RECORDING_START:
-		MakeRemoteFunction<decltype(obs_frontend_recording_start)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_recording_start"
-			).Call();
+		REMOTE_CALL(obs_frontend_recording_start);
 		break;
 	case commandIds::RECORDING_STOP:
-		MakeRemoteFunction<decltype(obs_frontend_recording_stop)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_recording_stop"
-			).Call();
+		REMOTE_CALL(obs_frontend_recording_stop);
 		break;
 	case commandIds::RECORDING_RESUME:
-		MakeRemoteFunction<decltype(obs_frontend_recording_pause)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_recording_pause"
-			).Call(false);
+		REMOTE_CALL(obs_frontend_recording_pause, false);
 		break;
 	case commandIds::RECORDING_PAUSE:
-		MakeRemoteFunction<decltype(obs_frontend_recording_pause)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_recording_pause"
-			).Call(true);
+		REMOTE_CALL(obs_frontend_recording_pause, true);
 		break;
 
 	case commandIds::REPLAY_BUFFER_START:
-		MakeRemoteFunction<decltype(obs_frontend_replay_buffer_start)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_replay_buffer_start"
-			).Call();
+		REMOTE_CALL(obs_frontend_replay_buffer_start);
 		break;
 	case commandIds::REPLAY_BUFFER_STOP:
-		MakeRemoteFunction<decltype(obs_frontend_replay_buffer_stop)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_replay_buffer_stop"
-			).Call();
+		REMOTE_CALL(obs_frontend_replay_buffer_stop);
 		break;
 	case commandIds::REPLAY_BUFFER_SAVE:
-		MakeRemoteFunction<decltype(obs_frontend_replay_buffer_save)>(
-			process,
-			L"obs-frontend-api.dll",
-			"obs_frontend_replay_buffer_save"
-			).Call();
+		REMOTE_CALL(obs_frontend_replay_buffer_save);
 		break;
 	}
 

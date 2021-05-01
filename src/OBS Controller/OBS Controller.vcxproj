@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h" />
+    <ClInclude Include="macros.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ext\Blackbone\src\BlackBone\BlackBone.vcxproj">
