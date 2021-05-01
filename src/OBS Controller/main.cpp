@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 #include <Windows.h>
 #include <BlackBone/Process/Process.h>
 #include <BlackBone/Process/RPC/RemoteFunction.hpp>
