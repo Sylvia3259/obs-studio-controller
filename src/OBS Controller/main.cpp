@@ -1,9 +1,6 @@
-#include <iostream>
-#include <map>
-#include <string>
+#include <tchar.h>
 #include <Windows.h>
 #include <BlackBone/Process/Process.h>
-#include <BlackBone/Process/RPC/RemoteFunction.hpp>
 #include "constants.h"
 #include "macros.h"
 using namespace std;

@@ -1,4 +1,6 @@
 #pragma once
+#include <map>
+#include <string>
 
 void(*obs_frontend_streaming_start)(void);
 void(*obs_frontend_streaming_stop)(void);
