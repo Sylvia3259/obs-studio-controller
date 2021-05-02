@@ -2,15 +2,18 @@
 Command-line interface controller for OBS Studio
 
 ## Usage
+### OBS Studio
+* ```--start-obs-studio``` : Start OBS Studio
+* ```--stop-obs-studio``` : Stop OBS Studio
 ### Streaming
-* ```--streaming-start``` : Start streaming
-* ```--streaming-stop``` : Stop streaming
+* ```--start-streaming``` : Start streaming
+* ```--stop-streaming``` : Stop streaming
 ### Recording
-* ```--recording-start``` : Start recording
-* ```--recording-stop``` : Stop recording
-* ```--recording-resume``` : Resume recording
-* ```--recording-pause``` : Pause recording
+* ```--start-recording``` : Start recording
+* ```--stop-recording``` : Stop recording
+* ```--resume-recording``` : Resume recording
+* ```--pause-recording``` : Pause recording
 ### Replay buffer
-* ```--replay-buffer-start``` : Start replay buffer
-* ```--replay-buffer-stop``` : Stop replay buffer
-* ```--replay-buffer-save``` : Save replay buffer
+* ```--start-replay-buffer``` : Start replay buffer
+* ```--stop-replay-buffer``` : Stop replay buffer
+* ```--save-replay-buffer``` : Save replay buffer
