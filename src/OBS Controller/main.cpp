@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
 	Process process;
 	if (commandId == commandIds::OBS_STUDIO_START) {
-		auto status = process.CreateAndAttach(obsPath, false, false, L"", obsDirectory.c_str(), nullptr);
+		auto status = process.CreateAndAttach(obsPath, false, false, L"", obsDirectory.c_str());
 		if (!NT_SUCCESS(status)) {
 			MessageBox(NULL, _T("Cannot create process"), _T("Error"), MB_ICONERROR);
 			return 1;
@@ -55,6 +55,7 @@ int main(int argc, char* argv[]) {
 			MessageBox(NULL, _T("Cannot attach to process"), _T("Error"), MB_ICONERROR);
 			return 1;
 		}
+		SetLastNtStatus(STATUS_SUCCESS);
 		status = process.Terminate();
 		if (!NT_SUCCESS(status)) {
 			MessageBox(NULL, _T("Failed to terminate process"), _T("Error"), MB_ICONERROR);
