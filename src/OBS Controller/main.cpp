@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
 	ShowWindow(GetConsoleWindow(), SW_HIDE);
 
 	if (argc != 2) {
-		ERROR("Invaild arguments");
+		ERROR_MESSAGE("Invaild arguments");
 		return 1;
 	}
 
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 	if (command != commands.end())
 		commandId = command->second;
 	else {
-		ERROR("Invaild arguments");
+		ERROR_MESSAGE("Invaild arguments");
 		return 1;
 	}
 
@@ -32,16 +32,16 @@ int main(int argc, char* argv[]) {
 		file.close();
 	}
 	else {
-		ERROR("Failed to open the file");
+		ERROR_MESSAGE("Failed to open the file");
 		return 1;
 	}
 
 	Process process;
 	NTSTATUS status;
 	if (commandId == commandIds::OBS_STUDIO_START) {
-		status = process.CreateAndAttach(obsPath, false, false, L"", obsDirectory.c_str());
+		status = process.CREATE(obsPath, obsDirectory.c_str());
 		if (!NT_SUCCESS(status)) {
-			ERROR("Cannot create process");
+			ERROR_MESSAGE("Cannot create process");
 			return 1;
 		}
 		process.Detach();
@@ -50,13 +50,13 @@ int main(int argc, char* argv[]) {
 	else if (commandId == commandIds::OBS_STUDIO_STOP) {
 		status = process.Attach(obsFilename.c_str());
 		if (!NT_SUCCESS(status)) {
-			ERROR("Cannot attach to process");
+			ERROR_MESSAGE("Cannot attach to process");
 			return 1;
 		}
 		SetLastNtStatus(STATUS_SUCCESS);
 		status = process.Terminate();
 		if (!NT_SUCCESS(status)) {
-			ERROR("Failed to terminate the process");
+			ERROR_MESSAGE("Failed to terminate the process");
 			return 1;
 		}
 		process.Detach();
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
 
 	status = process.Attach(obsFilename.c_str());
 	if (!NT_SUCCESS(status)) {
-		ERROR("Cannot attach to process");
+		ERROR_MESSAGE("Cannot attach to process");
 		return 1;
 	}
 	switch (commandId) {
