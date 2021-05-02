@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 		SetLastNtStatus(STATUS_SUCCESS);
 		status = process.Terminate();
 		if (!NT_SUCCESS(status)) {
-			ERROR("Failed to terminate process");
+			ERROR("Failed to terminate the process");
 			return 1;
 		}
 		process.Detach();
