@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <BlackBone/Process/Process.h>
 #include <BlackBone/Misc/Utils.h>
@@ -7,10 +8,8 @@ using namespace std;
 using namespace blackbone;
 
 int main(int argc, char* argv[]) {
-	ShowWindow(GetConsoleWindow(), SW_HIDE);
-
 	if (argc != 2) {
-		ERROR_MESSAGE("Invaild arguments");
+		cout << "Invaild arguments" << endl;
 		return 1;
 	}
 
@@ -19,7 +18,7 @@ int main(int argc, char* argv[]) {
 	if (command != commands.end())
 		commandId = command->second;
 	else {
-		ERROR_MESSAGE("Invaild arguments");
+		cout << "Invaild arguments" << endl;
 		return 1;
 	}
 
@@ -32,7 +31,7 @@ int main(int argc, char* argv[]) {
 		file.close();
 	}
 	else {
-		ERROR_MESSAGE("Failed to open the file");
+		cout << "Failed to open the file" << endl;
 		return 1;
 	}
 
@@ -41,7 +40,8 @@ int main(int argc, char* argv[]) {
 	if (commandId == commandIds::OBS_STUDIO_START) {
 		status = process.CREATE(obsPath, obsDirectory.c_str());
 		if (!NT_SUCCESS(status)) {
-			ERROR_MESSAGE("Cannot create process");
+			cout << hex << uppercase;
+			cout << "Cannot create process (0x" << status << ")" << endl;
 			return 1;
 		}
 		process.Detach();
@@ -50,13 +50,15 @@ int main(int argc, char* argv[]) {
 	else if (commandId == commandIds::OBS_STUDIO_STOP) {
 		status = process.Attach(obsFilename.c_str());
 		if (!NT_SUCCESS(status)) {
-			ERROR_MESSAGE("Cannot attach to process");
+			cout << hex << uppercase;
+			cout << "Cannot attach to process (0x" << status << ")" << endl;
 			return 1;
 		}
 		SetLastNtStatus(STATUS_SUCCESS);
 		status = process.Terminate();
 		if (!NT_SUCCESS(status)) {
-			ERROR_MESSAGE("Failed to terminate the process");
+			cout << hex << uppercase;
+			cout << "Failed to terminate the process (0x" << status << ")" << endl;
 			return 1;
 		}
 		process.Detach();
@@ -65,7 +67,8 @@ int main(int argc, char* argv[]) {
 
 	status = process.Attach(obsFilename.c_str());
 	if (!NT_SUCCESS(status)) {
-		ERROR_MESSAGE("Cannot attach to process");
+		cout << hex << uppercase;
+		cout << "Cannot attach to process (0x" << status << ")" << endl;
 		return 1;
 	}
 	switch (commandId) {
