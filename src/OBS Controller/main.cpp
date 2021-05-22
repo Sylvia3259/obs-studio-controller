@@ -1,39 +1,19 @@
-#include <iostream>
-#include <fstream>
 #include <BlackBone/Process/Process.h>
 #include <BlackBone/Misc/Utils.h>
-#include "constants.h"
+#include "Options.h"
 #include "macros.h"
 using namespace std;
 using namespace blackbone;
 
 int main(int argc, char* argv[]) {
-	if (argc != 2) {
-		cout << "Invaild arguments" << endl;
-		return 1;
-	}
+	Options options;
+	options.ParseCommandLine(argc, argv);
+	options.ParseConfigFile(Utils::GetExeDirectory() + L"\\obs-studio.txt");
 
-	commandIds commandId;
-	auto command = commands.find(argv[1]);
-	if (command != commands.end())
-		commandId = command->second;
-	else {
-		cout << "Invaild arguments" << endl;
-		return 1;
-	}
-
-	wstring obsPath, obsDirectory, obsFilename;
-	wifstream file(Utils::GetExeDirectory() + L"\\obs-studio.txt");
-	if (file.is_open()) {
-		getline(file, obsPath);
-		obsDirectory = Utils::GetParent(obsPath);
-		obsFilename = Utils::StripPath(obsPath);
-		file.close();
-	}
-	else {
-		cout << "Failed to open the file" << endl;
-		return 1;
-	}
+	const auto commandId = options.GetCommandId();
+	const auto obsPath = options.GetObsPath();
+	const auto obsDirectory = options.GetObsDirectory();
+	const auto obsFilename = options.GetObsFilename();
 
 	Process process;
 	NTSTATUS status;
