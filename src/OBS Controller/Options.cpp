@@ -9,8 +9,10 @@ Options::Options() {
 }
 
 void Options::ParseCommandLine(int argc, char* argv[]) {
-	if (argc != 2)
+	if (argc != 2) {
 		std::cout << "Invaild arguments" << std::endl;
+		return;
+	}
 
 	const auto command = commands.find(argv[1]);
 	if (command != commands.end())
@@ -30,8 +32,6 @@ void Options::ParseConfigFile(std::wstring configFile) {
 
 		file.close();
 	}
-	else
-		std::cout << "Failed to open the file" << std::endl;
 }
 
 commandIds Options::GetCommandId() const noexcept {

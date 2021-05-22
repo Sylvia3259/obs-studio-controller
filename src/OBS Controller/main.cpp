@@ -7,10 +7,12 @@ using namespace blackbone;
 
 int main(int argc, char* argv[]) {
 	Options options;
+
 	options.ParseCommandLine(argc, argv);
 	options.ParseConfigFile(Utils::GetExeDirectory() + L"\\obs-studio.txt");
 
 	const auto commandId = options.GetCommandId();
+
 	const auto obsPath = options.GetObsPath();
 	const auto obsDirectory = options.GetObsDirectory();
 	const auto obsFilename = options.GetObsFilename();
