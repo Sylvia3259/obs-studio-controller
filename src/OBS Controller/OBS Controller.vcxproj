@@ -165,10 +165,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Options.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="constants.h" />
+    <ClInclude Include="Options.h" />
+    <ClInclude Include="commands.h" />
     <ClInclude Include="macros.h" />
   </ItemGroup>
   <ItemGroup>
