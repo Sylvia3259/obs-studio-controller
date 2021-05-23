@@ -9,16 +9,14 @@ Options::Options() {
 }
 
 void Options::ParseCommandLine(int argc, char* argv[]) {
-	if (argc != 2) {
-		std::cout << "Invaild arguments" << std::endl;
-		return;
-	}
+	if (argc != 2)
+		throw "Invaild arguments";
 
 	const auto command = commands.find(argv[1]);
 	if (command != commands.end())
 		commandId = command->second;
 	else
-		std::cout << "Invaild arguments" << std::endl;
+		throw "Invaild arguments";
 }
 
 void Options::ParseConfigFile(std::wstring configFile) {
@@ -26,12 +24,28 @@ void Options::ParseConfigFile(std::wstring configFile) {
 	if (file.is_open()) {
 		std::getline(file, obsPath);
 
-		const size_t position = std::wstring(obsPath).find_last_of(L"\\/");
-		obsDirectory = std::wstring(obsPath).substr(0, position);
-		obsFilename = std::wstring(obsPath).substr(position + 1);
+		const size_t position = obsPath.find_last_of(L"\\/");
+		obsDirectory = obsPath.substr(0, position);
+		obsFilename = obsPath.substr(position + 1);
 
 		file.close();
 	}
+}
+
+void Options::PrintUsage() const noexcept {
+	CHAR buffer[MAX_PATH] = {};
+	GetModuleFileNameA(NULL, buffer, MAX_PATH);
+
+	size_t position;
+	std::string progname = buffer;
+	position = progname.find_last_of("\\/");
+	progname = progname.substr(position + 1);
+	position = progname.find_last_of(".");
+	progname = progname.substr(0, position);
+
+	std::cout << "Usage: " << progname << " <command>" << std::endl;
+	for (const auto& line : description)
+		std::cout << line << std::endl;
 }
 
 commandIds Options::GetCommandId() const noexcept {

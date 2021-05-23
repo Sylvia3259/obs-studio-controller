@@ -7,9 +7,14 @@ using namespace blackbone;
 
 int main(int argc, char* argv[]) {
 	Options options;
-
-	options.ParseCommandLine(argc, argv);
-	options.ParseConfigFile(Utils::GetExeDirectory() + L"\\obs-studio.txt");
+	try {
+		options.ParseCommandLine(argc, argv);
+		options.ParseConfigFile(Utils::GetExeDirectory() + L"\\obs-studio.txt");
+	}
+	catch (...) {
+		options.PrintUsage();
+		return 1;
+	}
 
 	const auto commandId = options.GetCommandId();
 

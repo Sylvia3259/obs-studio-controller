@@ -35,3 +35,21 @@ const std::map<std::string, commandIds> commands = {
 	{"--stop-replay-buffer", commandIds::REPLAY_BUFFER_STOP},
 	{"--save-replay-buffer", commandIds::REPLAY_BUFFER_SAVE},
 };
+
+const std::string description[] = {
+	"Commands:",
+	"    --start-obs-studio      Start OBS Studio",
+	"    --stop-obs-studio       Stop OBS Studio",
+	"",
+	"    --start-streaming       Start streaming",
+	"    --stop-streaming        Stop streaming",
+	"",
+	"    --start-recording       Start recording",
+	"    --stop-recording        Stop recording",
+	"    --resume-recording      Resume recording",
+	"    --pause-recording       Pause recording",
+	"",
+	"    --start-replay-buffer   Start replay buffer",
+	"    --stop-replay-buffer    Stop replay buffer",
+	"    --save-replay-buffer    Stop replay buffer",
+};
