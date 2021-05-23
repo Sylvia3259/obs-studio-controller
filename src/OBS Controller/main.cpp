@@ -1,5 +1,4 @@
 #include <BlackBone/Process/Process.h>
-#include <BlackBone/Misc/Utils.h>
 #include "Options.h"
 #include "macros.h"
 using namespace std;
