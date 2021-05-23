@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
 	Options options;
 	try {
 		options.ParseCommandLine(argc, argv);
-		options.ParseConfigFile(Utils::GetExeDirectory() + L"\\obs-studio-path.ini");
+		options.ParseConfigFile("obs-studio-path.ini");
 	}
 	catch (...) {
 		options.PrintUsage();

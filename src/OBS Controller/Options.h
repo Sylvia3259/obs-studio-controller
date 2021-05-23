@@ -11,7 +11,7 @@ public:
 	Options();
 
 	void ParseCommandLine(int argc, char* argv[]);
-	void ParseConfigFile(std::wstring configFile);
+	void ParseConfigFile(std::string configFile);
 
 	void PrintUsage() const noexcept;
 

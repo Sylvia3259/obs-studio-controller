@@ -19,7 +19,7 @@ void Options::ParseCommandLine(int argc, char* argv[]) {
 		throw "Invaild arguments";
 }
 
-void Options::ParseConfigFile(std::wstring configFile) {
+void Options::ParseConfigFile(std::string configFile) {
 	std::wifstream file(configFile);
 	if (file.is_open()) {
 		std::getline(file, obsPath);
