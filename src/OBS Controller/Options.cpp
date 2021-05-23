@@ -20,11 +20,19 @@ void Options::ParseCommandLine(int argc, char* argv[]) {
 }
 
 void Options::ParseConfigFile(std::string configFile) {
-	std::wifstream file(configFile);
+	CHAR buffer[MAX_PATH] = {};
+	GetModuleFileNameA(NULL, buffer, MAX_PATH);
+
+	size_t position;
+	std::string currentDirectory = buffer;
+	position = currentDirectory.find_last_of("\\/");
+	currentDirectory = currentDirectory.substr(0, position + 1);
+
+	std::wifstream file(currentDirectory + configFile);
 	if (file.is_open()) {
 		std::getline(file, obsPath);
 
-		const size_t position = obsPath.find_last_of(L"\\/");
+		position = obsPath.find_last_of(L"\\/");
 		obsDirectory = obsPath.substr(0, position);
 		obsFilename = obsPath.substr(position + 1);
 
